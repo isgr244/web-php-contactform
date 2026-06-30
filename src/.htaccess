@@ -1,0 +1,13 @@
+# ApacheのURL書き換え機能を有効化（URL変換ルール使用する記述）
+RewriteEngine On
+
+# 実際に存在するファイルの場合は、そのまま処理する
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# 実際に存在するディレクトリの場合も、そのまま処理する
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# 存在しないURLはすべてindex.phpへ渡す
+# MVCのフロントコントローラーとして処理する
+# [L]: このルールで処理終了（Last）
+RewriteRule ^ index.php [L]

@@ -1,0 +1,15 @@
+services:
+  php:
+    build: .
+    container_name: php-contactus
+    restart: unless-stopped
+    ports:
+      - "${HOST_PORT:-8081}:8081"
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - infra-net
+
+networks:
+  infra-net:
+    external: true
